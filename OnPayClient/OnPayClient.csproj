@@ -11,6 +11,7 @@
     <PackageProjectUrl>https://manage.onpay.io/docs/api_v1.html#introduction</PackageProjectUrl>
     <RepositoryUrl>https://github.com/onpayio/dotnet-onpay</RepositoryUrl>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
