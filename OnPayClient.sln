@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnPayClient", "OnPayClient\OnPayClient.csproj", "{BA61915B-0198-4623-B895-5D0E9FC82917}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA61915B-0198-4623-B895-5D0E9FC82917}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA61915B-0198-4623-B895-5D0E9FC82917}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA61915B-0198-4623-B895-5D0E9FC82917}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA61915B-0198-4623-B895-5D0E9FC82917}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {327F8056-3DA5-46D3-AB37-3302498F51B3}
+	EndGlobalSection
+EndGlobal
