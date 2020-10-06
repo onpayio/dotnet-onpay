@@ -31,7 +31,7 @@ window.SetGatewayId("Yor gateway id")
   .SetWindowSecret("secret")
   .SetCurrency("DKK")
   .SetAmount(123400)
-  .SetReference("UniqieReferenceId")
+  .SetReference("UniqueReferenceId")
   .SetAcceptUrl("https://example.com/payment?success=1")
   .SetDeclineUrl("https://example.com/payment?success=0")
   .SetType("payment")
@@ -40,8 +40,8 @@ window.SetGatewayId("Yor gateway id")
   .SetMethod("card")
   .EnableTestMode()
   .SetLanguage("en")
-  .SetName("Test Pærsån")
-  .SetEmail("emil@example.com");
+  .SetName("Test Person")
+  .SetEmail("email@example.com");
 
 // Use these params for your form
 var param = window.GenerateParams();
