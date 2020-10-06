@@ -8,13 +8,13 @@ namespace OnPayClient.Models.Extension
 {
     public static class TransactionExtensions
     {
-        public static AtomicResponse<DetailedTransaction> Capture(this AtomicResponse<DetailedTransaction> response, int? amount)
+        public static AtomicResponse<DetailedTransaction> Capture(this AtomicResponse<DetailedTransaction> response, int? amount = null)
         {
             ValidateResponse(response);
             return response.Data.Capture(amount);
         }
 
-        public static AtomicResponse<DetailedTransaction> Refund(this AtomicResponse<DetailedTransaction> response, int? amount)
+        public static AtomicResponse<DetailedTransaction> Refund(this AtomicResponse<DetailedTransaction> response, int? amount = null)
         {
             ValidateResponse(response);
             return response.Data.Refund(amount);
@@ -26,19 +26,19 @@ namespace OnPayClient.Models.Extension
             return response.Data.Cancel();
         }
 
-        public static async Task<AtomicResponse<DetailedTransaction>> CaptureAsync(this AtomicResponse<DetailedTransaction> response, int? amount)
+        public static async Task<AtomicResponse<DetailedTransaction>> CaptureAsync(this AtomicResponse<DetailedTransaction> response, int? amount = null)
         {
             ValidateResponse(response);
             return await response.Data.CaptureAsync(amount);
         }
 
-        public static async Task<AtomicResponse<DetailedTransaction>> RefundAsync(this AtomicResponse<DetailedTransaction> response, int? amount)
+        public static async Task<AtomicResponse<DetailedTransaction>> RefundAsync(this AtomicResponse<DetailedTransaction> response, int? amount = null)
         {
             ValidateResponse(response);
             return await response.Data.RefundAsync(amount);
         }
 
-        public static async Task<AtomicResponse<DetailedTransaction>> CancelAsync(this AtomicResponse<DetailedTransaction> response, int? amount)
+        public static async Task<AtomicResponse<DetailedTransaction>> CancelAsync(this AtomicResponse<DetailedTransaction> response)
         {
             ValidateResponse(response);
             return await response.Data.CancelAsync();
