@@ -3,10 +3,25 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>8.0</LangVersion>
+    <Authors>OnPay.io</Authors>
+    <Company>OnPay.io</Company>
+    <Product>OnPay.io</Product>
+    <Description>An API wrapper for OnPay payment solution</Description>
+    <PackageId>OnPay.SDK</PackageId>
+    <PackageProjectUrl>https://manage.onpay.io/docs/api_v1.html#introduction</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/onpayio/dotnet-onpay</RepositoryUrl>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="RestSharp.Serializers.NewtonsoftJson" Version="106.11.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
