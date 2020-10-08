@@ -66,6 +66,7 @@ namespace OnPayClient
         private string _workPhoneNumber;
         private string _deliveryEmail;
         private int? _deliveryTimeFrame;
+        private string _deliveryDisabled;
 
         private int? _giftCardAmount;
         private int? _giftCardCount;
@@ -362,6 +363,12 @@ namespace OnPayClient
             return this;
         }
 
+        public PaymentWindow SetDeliveryDisabled(string deliveryDisabled)
+        {
+            _deliveryDisabled = deliveryDisabled;
+            return this;
+        }
+
         public PaymentWindow SetGiftCardAmount(int amount)
         {
             _giftCardAmount = amount;
@@ -542,6 +549,7 @@ namespace OnPayClient
             AddString(parameters, "onpay_info_phone_work_number", _workPhoneNumber);
             AddString(parameters, "onpay_info_delivery_email", _deliveryEmail);
             AddInt(parameters, "onpay_info_delivery_time_frame", _deliveryTimeFrame, "D2");
+            AddString(parameters, "onpay_delivery_disabled ", _deliveryDisabled);
             AddInt(parameters, "onpay_info_gift_card_amount", _giftCardAmount);
             AddInt(parameters, "onpay_info_gift_card_count", _giftCardCount);
             AddBool(parameters, "onpay_info_preorder", _preorder);

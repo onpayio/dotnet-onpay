@@ -16,17 +16,14 @@ namespace OnPayClient.Models.Transactions
         [JsonProperty("company")]
         public string Company { get; internal set; }
 
-        [JsonProperty("street")]
-        public string Street { get; internal set; }
+        [JsonProperty("City")]
+        public string City { get; internal set; }
 
-        [JsonProperty("number")]
-        public string Number { get; internal set; }
+        [JsonProperty("address1")]
+        public string Address1 { get; internal set; }
 
-        [JsonProperty("floor")]
-        public string Floor { get; internal set; }
-
-        [JsonProperty("door")]
-        public string Door { get; internal set; }
+        [JsonProperty("address2")]
+        public string Address2 { get; internal set; }
 
         [JsonProperty("postal_code")]
         public string PostalCode { get; internal set; }
