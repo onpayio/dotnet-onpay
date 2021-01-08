@@ -26,6 +26,7 @@ namespace OnPayClient
         private string _design;
         private string _language;
         private bool _testMode;
+        private string _website;
 
         //OnPay Info
         private string _accountId;
@@ -417,6 +418,13 @@ namespace OnPayClient
             return this;
         }
 
+        public PaymentWindow SetWebsite(string url)
+        {
+            _website = url;
+            return this;
+        }
+
+
         public Dictionary<string, string> GenerateParams()
         {
             ValidateWindow();
@@ -435,7 +443,8 @@ namespace OnPayClient
                 { "onpay_language", _language },
                 { "onpay_design", _design },
                 { "onpay_testmode", _testMode ? "1" : "0" },
-                { "onpay_3dsecure", _secureEnabled ? "forced" : "" }
+                { "onpay_3dsecure", _secureEnabled ? "forced" : "" },
+                { "onpay_website", _website }
             };
 
             AddInfoParameters(windowParams);
