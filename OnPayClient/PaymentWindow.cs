@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -449,6 +450,12 @@ namespace OnPayClient
 
             AddInfoParameters(windowParams);
 
+            // Add platform
+            var version = Assembly.GetExecutingAssembly()
+                                  .GetCustomAttribute<AssemblyInformationalVersionAttribute>()
+                                  .InformationalVersion;
+            windowParams.Add("onpay_platform", $".NET SDK/{version}");
+
             // Generate HMAC
             var hmac = GenerateSha1(windowParams, _windowSecret);
             windowParams.Add("onpay_hmac_sha1", hmac);
@@ -494,6 +501,7 @@ namespace OnPayClient
             ValidateParameter("Reference", _reference);
             ValidateParameter("Accept URL", _acceptUrl);
             ValidateParameter("Amount", _amount.ToString());
+            ValidateParameter("Window secret", _windowSecret);
         }
 
         private void AddInfoParameters(IDictionary<string, string> parameters)
