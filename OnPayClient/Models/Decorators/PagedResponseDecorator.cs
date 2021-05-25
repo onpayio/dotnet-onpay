@@ -14,7 +14,7 @@ namespace OnPayClient.Models.Decorators
             if (response.StatusCode == HttpStatusCode.NotFound || response.Data == null)
                 return null;
 
-            if (response.StatusCode != HttpStatusCode.OK)
+            if (!response.IsSuccessful)
                 throw new InvalidServerResponseException { HttpStatus = response.StatusCode, Content = response.Content };
 
             var pagedResponse = response.Data;
