@@ -92,6 +92,9 @@ namespace OnPayClient.Models.Transactions
         [JsonProperty("history")]
         public TransactionHistory[] History { get; internal set; }
 
+        [JsonProperty("fee")]
+        public int Fee { get; internal set; }
+
         public AtomicResponse<DetailedTransaction> Capture(int? amount = null)
         {
             var request = PrepareCaptureRequest(amount);
@@ -136,15 +139,18 @@ namespace OnPayClient.Models.Transactions
 
         private RestRequest PrepareCaptureRequest(int? amount)
         {
-            var request = new RestRequest($"{Routes.Transactions}/{Uuid}/capture", Method.POST) {
+            var request = new RestRequest($"{Routes.Transactions}/{Uuid}/capture", Method.POST)
+            {
                 RequestFormat = DataFormat.Json
             };
 
             if (amount != null)
             {
                 request.AddJsonBody(
-                    new {
-                        data = new {
+                    new
+                    {
+                        data = new
+                        {
                             amount
                         }
                     });
@@ -155,15 +161,18 @@ namespace OnPayClient.Models.Transactions
 
         private RestRequest PrepareRefundRequest(int? amount)
         {
-            var request = new RestRequest($"{Routes.Transactions}/{Uuid}/refund", Method.POST) {
+            var request = new RestRequest($"{Routes.Transactions}/{Uuid}/refund", Method.POST)
+            {
                 RequestFormat = DataFormat.Json
             };
 
             if (amount != null)
             {
                 request.AddJsonBody(
-                    new {
-                        data = new {
+                    new
+                    {
+                        data = new
+                        {
                             amount
                         }
                     });
