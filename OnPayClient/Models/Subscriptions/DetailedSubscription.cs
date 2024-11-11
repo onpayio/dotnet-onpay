@@ -8,6 +8,7 @@ using OnPayClient.Models.Converters;
 using OnPayClient.Models.Decorators;
 using OnPayClient.Models.Enums;
 using OnPayClient.Models.Subscriptions.Enums;
+using OnPayClient.Models.Subscriptions.MetaData;
 using OnPayClient.Models.Transactions;
 
 using RestSharp;
@@ -73,16 +74,16 @@ namespace OnPayClient.Models.Subscriptions
         [JsonProperty("history")]
         public SubscriptionHistory[] History { get; internal set; }
 
-        public AtomicResponse<DetailedTransaction> Authorize(int amount, string orderId)
+        public AtomicResponse<DetailedTransaction> Authorize(int amount, string orderId, SurchargeSettings surcharge = null)
         {
-            var request = PrepareAuthorizeRequest(amount, orderId);
+            var request = PrepareAuthorizeRequest(amount, orderId, surcharge);
             var response = _client.Execute<AtomicResponse<DetailedTransaction>>(request, Method.POST);
             return AtomicResponseDecorator.DecorateResponse(response, _client);
         }
 
-        public async Task<AtomicResponse<DetailedTransaction>> AuthorizeAsync(int amount, string orderId)
+        public async Task<AtomicResponse<DetailedTransaction>> AuthorizeAsync(int amount, string orderId, SurchargeSettings surcharge = null)
         {
-            var request = PrepareAuthorizeRequest(amount, orderId);
+            var request = PrepareAuthorizeRequest(amount, orderId, surcharge);
             var response = await _client.ExecuteAsync<AtomicResponse<DetailedTransaction>>(request, Method.POST);
             return AtomicResponseDecorator.DecorateResponse(response, _client);
         }
@@ -109,20 +110,24 @@ namespace OnPayClient.Models.Subscriptions
                 transaction.DecorateWithRestClient(client);
         }
 
-        private RestRequest PrepareAuthorizeRequest(int amount, string orderId)
+        private RestRequest PrepareAuthorizeRequest(int amount, string orderId, SurchargeSettings surcharge)
         {
-            var request = new RestRequest($"{Routes.Subscriptions}/{Uuid}/authorize", Method.POST) {
+            var request = new RestRequest($"{Routes.Subscriptions}/{Uuid}/authorize", Method.POST)
+            {
                 RequestFormat = DataFormat.Json
             };
 
             request.AddJsonBody(
-                new {
-                    data = new {
+                new
+                {
+                    data = new
+                    {
                         amount,
-                        order_id = orderId
+                        order_id = orderId,
+                        surcharge_enabled = surcharge?.Enabled,
+                        surcharge_vat_rate = surcharge?.VatRate,
                     }
                 });
-
             return request;
         }
     }
