@@ -604,8 +604,8 @@ namespace OnPayClient
                 throw new PaymentWindowValidationException { ParameterName = nameof(_surcharge_vat_rate) };
             }
 
-            parameters.Add("surcharge_enabled", "true");
-            parameters.Add("surcharge_vat_rate", _surcharge_vat_rate.Value.ToString());
+            parameters.Add("onpay_surcharge_enabled", "true");
+            parameters.Add("onpay_surcharge_vat_rate", _surcharge_vat_rate.Value.ToString());
         }
     }
 }
