@@ -77,6 +77,9 @@ namespace OnPayClient
         private bool? _reorder;
         private int? _shippingMethod;
 
+        private bool? _surcharge_enabled;
+        private int? _surcharge_vat_rate;
+
         public PaymentWindow SetGatewayId(string gatewayId)
         {
             _gatewayId = gatewayId;
@@ -425,6 +428,18 @@ namespace OnPayClient
             return this;
         }
 
+        public PaymentWindow EnableSurcharge()
+        {
+            _surcharge_enabled = true;
+            return this;
+        }
+
+
+        public PaymentWindow SetSurchargeVatAmount(decimal amount)
+        {
+            _surcharge_vat_rate = Convert.ToInt32(amount * 100);
+            return this;
+        }
 
         public Dictionary<string, string> GenerateParams()
         {
@@ -447,6 +462,8 @@ namespace OnPayClient
                 { "onpay_3dsecure", _secureEnabled ? "forced" : "" },
                 { "onpay_website", _website }
             };
+
+            AddSurchargeParameters(windowParams);
 
             AddInfoParameters(windowParams);
 
@@ -573,6 +590,22 @@ namespace OnPayClient
             AddDate(parameters, "onpay_info_preorder_date", _preorderDate);
             AddBool(parameters, "onpay_info_reorder", _reorder);
             AddInt(parameters, "onpay_info_shipping_method", _shippingMethod, "D2");
+        }
+
+        private void AddSurchargeParameters(IDictionary<string, string> parameters)
+        {
+            if (_surcharge_enabled != true)
+            {
+                return;
+            }
+
+            if (_surcharge_vat_rate == null)
+            {
+                throw new PaymentWindowValidationException { ParameterName = nameof(_surcharge_vat_rate) };
+            }
+
+            parameters.Add("onpay_surcharge_enabled", "true");
+            parameters.Add("onpay_surcharge_vat_rate", _surcharge_vat_rate.Value.ToString());
         }
     }
 }
